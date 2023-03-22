@@ -1,6 +1,6 @@
 @import url('./common.css');
 
-body{
+body {
   display: flex;
 }
 
@@ -47,6 +47,10 @@ input:focus {
   border: 1px solid lightgrey;
 }
 
+input:invalid {
+  border: 1px solid #ff7c7c;
+}
+
 label {
   width: 100%;
   font-weight: 300;
@@ -64,25 +68,33 @@ button {
   font-size: 1em;
 }
 
+button:disabled {
+  background-color: rgba(120, 152, 255, 0.5);
+}
+
 .form-header {
   color: grey;
   font-size: 2em;
 }
-.ingressar{
+
+.ingressar {
   text-align: center;
 }
-.left{
-  width: 50%;  
+
+.left {
+  width: 50%;
   background-color: white;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.left img{
-  width:60%;
+
+.left img {
+  width: 60%;
 }
-.right{
+
+.right {
   width: 50%;
   display: flex;
   flex-direction: column;

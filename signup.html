@@ -11,8 +11,8 @@
   <link rel="stylesheet" href="styles/acesso.css">
 
   <!-- ---------------------- lógica aplicada no registro -------------------- -->
-  <script src="/scripts/utils.js"></script>
-  <script src="/scripts/signup.js"></script>
+  <script src="/scripts/utils.js" defer></script>
+  <script src="/scripts/signup.js" defer></script>
 
 </head>
 
@@ -22,33 +22,33 @@
     <img src="./assets/pessoa-signup.png" alt="">
   </div>
   <div class="right">
-    <form>
+    <form name="sing-up" onkeyup="handleForm()">
       <div class="form-header">
         <p>To-Do App</p>
       </div>
 
       <label>
         Nome:
-        <input type="text">
+        <input type="text" name="name">
       </label>
       <label>
         Sobrenome:
-        <input type="text">
+        <input type="text" name="last-name">
       </label>
       <label>
         Email:
-        <input type="email">
+        <input type="email" name="email">
       </label>
       <label>
         Senha:
-        <input type="password">
+        <input type="password" name="password">
       </label>
       <label>
         Repetir senha:
-        <input type="password">
+        <input type="password" name="confirm-pwd">
       </label>
 
-      <button>Criar conta</button>
+      <button name="send" disabled>Criar conta</button>
 
     </form>
     <div class="ingressar">
