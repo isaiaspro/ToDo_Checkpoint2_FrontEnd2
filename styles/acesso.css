@@ -89,3 +89,19 @@ button {
   align-items: center;
   justify-content: center;
 }
+
+@media screen and (max-width: 660px){
+body{
+  flex-direction: column;
+  align-items: center;
+}
+
+.right, .left{
+  min-width: 320px;
+}
+
+a{
+  padding: 1em 0px;
+}
+
+}
