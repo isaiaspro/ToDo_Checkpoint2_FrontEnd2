@@ -1,4 +1,4 @@
-const formElement = document.forms["sing-up"]
+const formElement = document.getElementById('sign-up')
 const inputsElement = document.querySelectorAll("input");
 
 function validateForm() {
@@ -14,8 +14,8 @@ function validateForm() {
 
     if (pwd.value !== confirmPWD.value && pwd.value !== ""
         && confirmPWD.value !== "") {
-            formIsValid = false;
-            confirmPWD.setCustomValidity('As senhas não correspondem');
+        formIsValid = false;
+        confirmPWD.setCustomValidity('As senhas não correspondem');
     } else {
         confirmPWD.setCustomValidity('');
     }
@@ -23,13 +23,17 @@ function validateForm() {
     return formIsValid;
 }
 
-function handleForm() {
+function handleForm(e) {
+    e.preventDefault();
+
     let formIsValid = validateForm();
 
-    if (formIsValid) {
-        formElement['send'].disabled = false;
-    } else {
+    if (!formIsValid) {
         formElement['send'].disabled = true;
         formElement.reportValidity();
+    } else {
+        formElement['send'].disabled = false;
     }
 }
+
+formElement.addEventListener('keyup', handleForm);

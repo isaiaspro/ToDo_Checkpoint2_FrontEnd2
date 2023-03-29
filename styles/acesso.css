@@ -48,7 +48,7 @@ input:focus {
 }
 
 input:invalid {
-  border: 1px solid #ff7c7c;
+  border: 1px solid #ff7979a6;
 }
 
 label {
@@ -69,7 +69,7 @@ button {
 }
 
 button:disabled {
-  background-color: rgba(120, 152, 255, 0.5);
+  background-color: rgba(168, 188, 255, 0.5);
   cursor: not-allowed;
 }
 

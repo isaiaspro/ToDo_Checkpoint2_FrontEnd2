@@ -22,33 +22,33 @@
     <img src="./assets/pessoa-signup.png" alt="">
   </div>
   <div class="right">
-    <form name="sing-up" onkeyup="handleForm()">
+    <form name="sign-up" id="sign-up">
       <div class="form-header">
         <p>To-Do App</p>
       </div>
 
       <label>
         Nome:
-        <input type="text" name="name">
+        <input type="text" minlength="4" maxlength="20" name="name">
       </label>
       <label>
         Sobrenome:
-        <input type="text" name="last-name">
+        <input type="text" minlength="6" maxlength="50" name="last-name">
       </label>
       <label>
         Email:
-        <input type="email" name="email">
+        <input type="email" name="email" minlength="6" maxlength="250">
       </label>
       <label>
         Senha:
-        <input type="password" name="password">
+        <input type="password" name="password" minlength="8">
       </label>
       <label>
         Repetir senha:
-        <input type="password" name="confirm-pwd">
+        <input type="password" name="confirm-pwd" minlength="8">
       </label>
 
-      <button name="send" disabled>Criar conta</button>
+      <button name="send" onsubmit="" disabled>Criar conta</button>
 
     </form>
     <div class="ingressar">
