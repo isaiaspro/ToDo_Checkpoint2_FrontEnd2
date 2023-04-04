@@ -36,6 +36,10 @@ function validateInput(inputRef) {
 
 }
 
+function loginError(){
+    alert('Seu email e/ou senha estão incorretos. Verifique');
+}
+
 function login(event) {
         
     event.preventDefault()
@@ -67,13 +71,14 @@ function login(event) {
                           sessionStorage.setItem('authToken', token.jwt)
                           window.location.href = '/tarefas.html'
                   })
-            } else if(response.status !== 201){
+            } else if(response.status == 400 || response.status == 404){
                 // fazer uma função para mostrar o erro
                 
                 // function mostraErrro(error) {
                 // no parametro temos que receber o response.status
                 // e a gente mostra o err de acordo com o status 
                 // }
+                loginError()
             
 
             }
