@@ -62,7 +62,7 @@ function sendData(e) {
         .then(response => {
             if (response.ok) {
                 response.json().then( token => {
-                    sessionStorage.setItem('jwt', JSON.stringify(token.jwt))
+                    sessionStorage.setItem('authToken', JSON.stringify(token.jwt))
                     setTimeout( () => {
                         window.location.href = './tarefas.html';
                     }, 5000)

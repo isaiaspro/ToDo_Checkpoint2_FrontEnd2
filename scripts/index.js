@@ -1,12 +1,9 @@
-
-
 const inputEmailRef = document.querySelector('#inputEmail');
 const inputPasswordRef = document.querySelector('#inputPassword');
 const loginButtonRef = document.querySelector('#btnLogin');
 
 
 var formErrors = {
-
     inputEmail: true,
     inputPassword: true
 }
@@ -39,17 +36,14 @@ function validateInput(inputRef) {
 
 }
 
-
-const userLoginData = {
-
-    email: inputEmailRef.value,
-    password: inputPasswordRef.value
-
-}
-
 function login(event) {
-
+        
     event.preventDefault()
+
+    const userLoginData = {
+        email: inputEmailRef.value,
+        password: inputPasswordRef.value
+    }
 
     const requestHeaders = {
       'Accept': 'application/json',
@@ -62,19 +56,25 @@ function login(event) {
        body: JSON.stringify(userLoginData)
     }
 
+    console.log(userLoginData);
+
     fetch('https://todo-api.ctd.academy/v1/users/login', requestConfig).then(
         response => {
-            if(response.ok) {
+            if(response.ok && response.status === 201) {
                response.json()
                   .then(
                       token => {
                           sessionStorage.setItem('authToken', token.jwt)
                           window.location.href = '/tarefas.html'
                   })
-
-            } else {
-
-               
+            } else if(response.status !== 201){
+                // fazer uma função para mostrar o erro
+                
+                // function mostraErrro(error) {
+                // no parametro temos que receber o response.status
+                // e a gente mostra o err de acordo com o status 
+                // }
+            
 
             }
         }
