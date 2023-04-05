@@ -33,3 +33,14 @@ function setUserName(){
     const userName = sessionStorage.getItem('userName')
         userNameRef.innerText = userName
     }
+
+    function logout() {
+
+        window.location.href = '/index.html'
+        sessionStorage.clear()
+    
+    }
+
+    const closeAppRef = document.querySelector('#closeApp')
+
+    closeAppRef.addEventListener('click',  logout)
