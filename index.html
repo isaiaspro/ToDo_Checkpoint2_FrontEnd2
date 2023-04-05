@@ -34,22 +34,24 @@
 
       <h1>Acessar</h1>
 
-        <label>
+      <div class="user-input" >
 
+        <label>
           Email:
-          <input id="inputEmail" type="email" minlength="6">
-          <!-- <small>Preencha o campo E-mail corretamente</small> -->
-  
         </label>
+          <input id="inputEmail" type="email" required>
+        <small>Preencha o email corretamente</small>
+      </div>
 
+      <div class="user-input" id="userPassword">
         <label>
-
           Senha:
-          <input id="inputPassword" type="password" minlength="8">
-          <!-- <small>Preencha o campo password corretamente</small> -->
-  
         </label>
+          <input  id="inputPassword" type="password" min="8" required>
+        <small>Preencha a senha corretamente</small>
+      </div>
       
+        <small  id="loginError">Seu E-mail e/ou Senha estão incorretos. Verifique.</small>
 
       <button id="btnLogin" type="submit" disabled>Acessar</button>
 

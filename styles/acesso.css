@@ -12,6 +12,7 @@ h1 {
 
 form {
   position: relative;
+  width: 26em;
   max-width: 26em;
   background-color: white;
   display: flex;
@@ -57,6 +58,46 @@ label {
   margin-top: 1em;
   font-size: .8em;
 }
+
+.user-input{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 3px;
+}
+
+/* aplicando css erros */
+
+small{
+  display: none;
+  font-size: .8em;
+  font-weight: 300;
+}
+
+input:required {
+  border-color: transparent;
+}
+
+div.error label{
+  color: red;
+}
+
+div.error small{
+  color: red;
+  display: block;
+}
+
+div.error input {
+  border-color: red;
+}
+
+small.error {
+  color: red;
+  display: block;
+  
+}
+
+/* aplicando css erros */
 
 
 button {

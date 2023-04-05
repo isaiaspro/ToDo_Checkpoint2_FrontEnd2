@@ -1,6 +1,7 @@
 const inputEmailRef = document.querySelector('#inputEmail');
 const inputPasswordRef = document.querySelector('#inputPassword');
 const loginButtonRef = document.querySelector('#btnLogin');
+const loginErrorRef = document.querySelector('#loginError')
 
 
 var formErrors = {
@@ -15,7 +16,7 @@ function checkFormValidity() {
   loginButtonRef.disabled = !formValidity;
 
 }
-
+console.log(formErrors)
 function validateInput(inputRef) {
 
     const inputValid = inputRef.checkValidity()
@@ -36,9 +37,6 @@ function validateInput(inputRef) {
 
 }
 
-function loginError(){
-    alert('Seu email e/ou senha estão incorretos. Verifique');
-}
 
 function login(event) {
         
@@ -71,14 +69,13 @@ function login(event) {
                           sessionStorage.setItem('authToken', token.jwt)
                           window.location.href = '/tarefas.html'
                   })
-            } else if(response.status == 400 || response.status == 404){
+            } else if(response.status !== 201){
                 // fazer uma função para mostrar o erro
-                
                 // function mostraErrro(error) {
                 // no parametro temos que receber o response.status
                 // e a gente mostra o err de acordo com o status 
                 // }
-                loginError()
+                loginError(response)
             
 
             }
@@ -86,8 +83,24 @@ function login(event) {
     )
 
 }
+function loginError(response){
+    if (response.status == 400 || response.status == 404){
+
+        loginErrorRef.classList.add('error')
+ 
+    } else {
+
+        loginErrorRef.classList.remove('error')
+
+    }
+
+}
 
 
-inputEmailRef.addEventListener('keyup', () => validateInput(inputEmailRef));
+
+inputEmailRef.addEventListener('blur', () => validateInput(inputEmailRef));
+// inputEmailRef.addEventListener('keyup', () => validateInput(inputEmailRef));
 inputPasswordRef.addEventListener('keyup',() => validateInput(inputPasswordRef));
+inputPasswordRef.addEventListener('blur',() => validateInput(inputPasswordRef));
+loginButtonRef.addEventListener('click', checkFormValidity());
 loginButtonRef.addEventListener('click',(event) => login(event));
