@@ -11,6 +11,7 @@ function checkUserExists(token) {
             if (response.ok) {
                 response.json().then(data => {
                     sessionStorage.setItem('userName', `${data.firstName} ${data.lastName}`)
+                    setUserName()
                 })
             }
         })
@@ -26,3 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
         checkUserExists(token)
     }
 })
+
+function setUserName(){
+    const userNameRef = document.querySelector('#userName')
+    const userName = sessionStorage.getItem('userName')
+        userNameRef.innerText = userName
+    }

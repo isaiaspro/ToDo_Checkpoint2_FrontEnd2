@@ -98,6 +98,7 @@ function loginError(response){
 
 
 
+
 inputEmailRef.addEventListener('blur', () => validateInput(inputEmailRef));
 // inputEmailRef.addEventListener('keyup', () => validateInput(inputEmailRef));
 inputPasswordRef.addEventListener('keyup',() => validateInput(inputPasswordRef));
