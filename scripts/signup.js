@@ -1,7 +1,7 @@
 const formElement = document.getElementById('sign-up')
 const inputsElement = document.querySelectorAll("input");
 const responseElement = document.getElementById('response')
-const API = 'https://todo-api.ctd.academy/v1/users'
+import { API } from './env.js'
 
 function validateForm() {
     let formIsValid = true;
@@ -45,7 +45,6 @@ function sendResponse(response) {
         responseElement.innerHTML = `<span class="err">erro no servidor</span>`
     }
 }
-
 function sendData(e) {
     e.preventDefault();
 
@@ -58,11 +57,14 @@ function sendData(e) {
         body: JSON.stringify(catchData())
     }
 
-    fetch(API, config)
+    fetch(`${API}/users`, config)
         .then(response => {
             if (response.ok) {
                 response.json().then( token => {
-                    sessionStorage.setItem('authToken', JSON.stringify(token.jwt))
+                    debugger
+                    console.log(token)
+                    sessionStorage.setItem('authToken', token.jwt)
+                    console.log(token)
                     setTimeout( () => {
                         window.location.href = './tarefas.html';
                     }, 5000)
