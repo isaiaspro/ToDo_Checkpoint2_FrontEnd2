@@ -47,16 +47,19 @@
 
   <form class="nova-tarefa">
     <div class="not-done"></div>
-    <input id="novaTarefa" type="text" placeholder="Nova tarefa">
-    <button type="submit">
+    <div class="new-task-input">
+      <input id="novaTarefa" type="text" placeholder="Nova tarefa">
+      <small id="inputTaskAlert">Informe um Título para a sua tarefa</small>
+    </div>
+    <button id="createTaskbutton" type="submit">
       <img src="./assets/plus.png" alt="Adicionar uma nova tarefa">
     </button>
   </form>
 
 
-  <ul class="tarefas-pendentes">
+  <ul class="tarefas-pendentes" id="tarefasPendentes">
     <div>
-    <!-- <div id="skeleton"> -->
+    <div id="skeleton">
       <li class="tarefa">
         <div class="not-done"></div>
         <div class="descricao">
@@ -83,9 +86,9 @@
   </ul>
 
   <h2 class="titulo-terminadas">Tarefas terminadas</h2>
-  <ul class="tarefas-terminadas">
+  <ul class="tarefas-terminadas" id="tarefasTerminadas">
 
-    <!-- <div id="skeleton"> -->
+    <div id="skeleton">
       <li class="tarefa">
         <div class="not-done"></div>
         <div class="descricao">

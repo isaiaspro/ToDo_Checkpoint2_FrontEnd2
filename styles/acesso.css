@@ -12,7 +12,7 @@ h1 {
 
 form {
   position: relative;
-  width: 26em;
+  min-width: 320px;
   max-width: 26em;
   background-color: white;
   display: flex;

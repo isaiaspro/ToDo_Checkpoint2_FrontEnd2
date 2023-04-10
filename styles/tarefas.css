@@ -48,6 +48,21 @@ a {
 
 /* Nova tarefa ----------------------------------------------------------- */
 
+.new-task-input{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+small{
+  display: none;
+}
+
+.new-task-input .input-task-alert{
+  color: red;
+  display: block;
+}
+
 .nova-tarefa {
   position: relative;
   display: flex;

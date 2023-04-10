@@ -1,7 +1,6 @@
 import { API } from './env.js'
 
 export function checkUserExists(token) {
-    console.log(token)
     const config = {
         method: 'GET',
         headers: {
@@ -10,7 +9,6 @@ export function checkUserExists(token) {
             'Authorization': token
         }
     }
-    console.log(token)
     fetch('https://todo-api.ctd.academy/v1/users/getMe', config)
         .then(response => {
             if (response.ok) {
@@ -21,17 +19,14 @@ export function checkUserExists(token) {
             }
         })
 }
-console.log(sessionStorage.getItem('userName'))
 document.addEventListener('DOMContentLoaded', () => {
     const token = sessionStorage.getItem('authToken');
     JSON.stringify(token)
-    console.log(token)
 
     if (!token) {
-        window.location.href = './index.html';
+        logout()
 
     } else if (token) {
-        console.log(token)
         checkUserExists(token)
     }
 })
