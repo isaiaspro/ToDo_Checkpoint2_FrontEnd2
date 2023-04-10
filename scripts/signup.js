@@ -61,7 +61,6 @@ function sendData(e) {
         .then(response => {
             if (response.ok) {
                 response.json().then( token => {
-                    debugger
                     console.log(token)
                     sessionStorage.setItem('authToken', token.jwt)
                     console.log(token)
