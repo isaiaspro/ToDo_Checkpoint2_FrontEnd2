@@ -48,7 +48,7 @@ input:focus {
 }
 
 input:invalid {
-  border: 1px solid #ff7979a6;
+  border: 1px solid rgb(218, 88, 88);
 }
 
 label {
@@ -79,20 +79,20 @@ input:required {
 }
 
 div.error label{
-  color: red;
+  color: rgb(218, 88, 88);
 }
 
 div.error small{
-  color: red;
+  color: rgb(218, 88, 88);
   display: block;
 }
 
 div.error input {
-  border-color: red;
+  border-color: rgb(218, 88, 88);
 }
 
 small.error {
-  color: red;
+  color: rgb(218, 88, 88);
   display: block;
   
 }

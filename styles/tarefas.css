@@ -59,7 +59,7 @@ small{
 }
 
 .new-task-input .input-task-alert{
-  color: red;
+  color: rgb(218, 88, 88);
   display: block;
 }
 

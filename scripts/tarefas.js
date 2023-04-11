@@ -48,6 +48,8 @@ function createTask(e) {
         response.json().then((data) => {
           console.log(data);
           tarefasPendentes = [];
+          tarefasTerminadas = [];
+
           getTasks();
         });
       }
@@ -191,13 +193,19 @@ function addEventListenerTerminadas() {
 function insertTasksInHTML() {
   tarefasPendentesRef.innerHTML = "";
 
+
+
   tarefasPendentes.map((task) => {
+
+    const createdAtDate = new Date(task.createdAt)
+    const createdAtFormated = new Intl.DateTimeFormat('pt-BR').format(createdAtDate)
+
     tarefasPendentesRef.innerHTML += `
             <li class="tarefa">
         <div class="not-done"></div>
         <div class="descricao">
         <p class="nome">${task.description}</p>
-        <p class="timestamp">Criada em: ${task.createdAt}</p>
+        <p class="timestamp">Criada em: ${createdAtFormated}</p>
         </div>
         </li>
         `;
@@ -206,12 +214,16 @@ function insertTasksInHTML() {
   tarefasTerminadasRef.innerHTML = "";
 
   tarefasTerminadas.map((task) => {
+
+    const createdAtDate = new Date(task.createdAt)
+    const createdAtFormated = new Intl.DateTimeFormat('pt-BR').format(createdAtDate)
+
     tarefasTerminadasRef.innerHTML += `
 <li class="tarefa">
 <div class="not-done"></div>
 <div class="descricao">
 <p class="nome">${task.description}</p>
-            <p class="timestamp">Criada em: ${task.createdAt}</p>
+            <p class="timestamp">Criada em: ${createdAtFormated}</p>
         </div>
     </li>
     `;
