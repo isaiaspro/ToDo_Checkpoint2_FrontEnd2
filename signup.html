@@ -28,29 +28,52 @@
         <p>To-Do App</p>
       </div>
 
+<div class="user-input">
       <label>
         Nome:
-        <input type="text" minlength="4" maxlength="20" name="name">
       </label>
-      <label>
-        Sobrenome:
-        <input type="text" minlength="6" maxlength="50" name="last-name">
-      </label>
+        <input type="text" id="inputName" minlength="4" maxlength="20" name="name" required>
+      <small>* Insira no minimo 4 caracteres</small>
+    </div>
+
+    <div class="user-input">
+    <label>
+      Sobrenome:
+    </label>
+      <input type="text" id="lastName" minlength="6" maxlength="50" name="last-name" required>
+      <small>* Insira no minimo 6 caracteres</small>
+    </div>
+    
+    <div class="user-input">
       <label>
         Email:
-        <input type="email" name="email" minlength="6" maxlength="250">
       </label>
+      <input type="email" id="email" name="email" minlength="6" maxlength="250" required>
+      <small>* Insira um email válido</small>
+    </div>
+    
+    
+    <div class="user-input">
+
       <label>
         Senha:
-        <input type="password" name="password" minlength="8">
       </label>
-      <label>
-        Repetir senha:
-        <input type="password" name="confirm-pwd" minlength="8">
-      </label>
+      <input type="password" id="password" name="password" minlength="8" required>
+      <small>* Sua senha precisa ter no mínimo 8 caracteres</small>
+    </div>
+      
+      <div class="user-input">
+
+        <label>
+          Repetir senha:
+        </label>
+        <input type="password" id="confirmPassword" name="confirm-pwd" minlength="8" required>
+      <small>* As senhas não correspondem</small>
+      </div>
+
       <div id="response">
       </div>
-      <button name="send" disabled>Criar conta</button>
+      <button name="send" id="btnIngressar" disabled>Criar conta</button>
     </form>
 
     <div class="ingressar">

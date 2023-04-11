@@ -30,6 +30,7 @@ function validateInput(inputRef) {
         inputRef.parentElement.classList.add('error')
 
     }
+    console.log(inputRef.id)
 
     formErrors[inputRef.id] = !inputValid
 
@@ -103,5 +104,5 @@ inputEmailRef.addEventListener('blur', () => validateInput(inputEmailRef));
 // inputEmailRef.addEventListener('keyup', () => validateInput(inputEmailRef));
 inputPasswordRef.addEventListener('keyup',() => validateInput(inputPasswordRef));
 inputPasswordRef.addEventListener('blur',() => validateInput(inputPasswordRef));
-loginButtonRef.addEventListener('click', checkFormValidity());
+loginButtonRef.addEventListener('click', checkFormValidity);
 loginButtonRef.addEventListener('click',(event) => login(event));
