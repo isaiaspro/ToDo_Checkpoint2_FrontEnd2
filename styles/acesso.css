@@ -154,7 +154,7 @@ button:disabled {
 }
 
 #response span.err {
-  color:#ff4f4f;
+  color:rgb(218, 88, 88);
   font-weight: 700;
 }
 

@@ -83,7 +83,12 @@ function catchData() {
 
 function sendResponse(response) {
     if (response === 200) {
-        responseElement.innerHTML = `<span class="ok">usuario criado com sucesso!</span>`
+        Swal.fire(
+            'Bem vindo!',
+            'Você foi cadastrado com sucesso!',
+            'success'
+          )
+        // responseElement.innerHTML = `<span class="ok">usuario criado com sucesso!</span>`
     } else if (response === 400) {
         responseElement.innerHTML = `<span class="err">email ja cadastrado!</span>`
     } else {

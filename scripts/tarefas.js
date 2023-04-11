@@ -117,9 +117,24 @@ function getUserData() {
   );
 }
 
-function deleteTask(task) {
-  console.log("Deletou" + task);
 
+function confirmDeleteTask(task) {
+  Swal.fire({
+    title: 'Você está certo(a) disso?',
+    text: "Você não poderá reverter essa ação!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Sim, exclua a tarefa!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      deleteTask(task);
+    }
+  });
+}
+
+function deleteTask(task) {
   // Configuração da Request
   var requestConfig = {
     method: "DELETE",
@@ -136,6 +151,12 @@ function deleteTask(task) {
       });
     }
   });
+
+  Swal.fire(
+    'Sucesso!',
+    'Sua tarefa foi excluida.',
+    'success'
+  );
 }
 
 function concluirTarefa(task) {
@@ -185,7 +206,7 @@ function addEventListenerTerminadas() {
     const buttonRef = item.children[0];
 
     buttonRef.addEventListener("click", () =>
-      deleteTask(tarefasTerminadas[index].id)
+    confirmDeleteTask(tarefasTerminadas[index].id)
     );
   });
 }
@@ -201,12 +222,12 @@ function insertTasksInHTML() {
     const createdAtFormated = new Intl.DateTimeFormat('pt-BR').format(createdAtDate)
 
     tarefasPendentesRef.innerHTML += `
-            <li class="tarefa">
-        <div class="not-done"></div>
-        <div class="descricao">
-        <p class="nome">${task.description}</p>
-        <p class="timestamp">Criada em: ${createdAtFormated}</p>
-        </div>
+        <li class="tarefa">
+          <div class="not-done"></div>
+          <div class="descricao">
+            <p class="nome">${task.description}</p>
+            <p class="timestamp">Criada em: ${createdAtFormated}</p>
+          </div>
         </li>
         `;
   });
@@ -219,13 +240,13 @@ function insertTasksInHTML() {
     const createdAtFormated = new Intl.DateTimeFormat('pt-BR').format(createdAtDate)
 
     tarefasTerminadasRef.innerHTML += `
-<li class="tarefa">
-<div class="not-done"></div>
-<div class="descricao">
-<p class="nome">${task.description}</p>
-            <p class="timestamp">Criada em: ${createdAtFormated}</p>
+      <li class="tarefa">
+        <div class="not-done"></div>
+        <div class="descricao">
+          <p class="nome">${task.description}</p>
+          <p class="timestamp">Criada em: ${createdAtFormated}</p>
         </div>
-    </li>
+      </li>
     `;
   });
 
