@@ -12,42 +12,6 @@ console.log(inputNomeRef)
 
 import { API } from './env.js'
 
-/*function validateForm() {
-    let formIsValid = true;
-    let pwd = formElement['password'];
-    let confirmPWD = formElement['confirm-pwd'];
-    // console.log(confirmPWD)
-
-    for (let input of inputsElement) {
-        if (input.value === "") {
-            formIsValid = false;
-        }
-    }
-
-    if (pwd.value !== confirmPWD.value && pwd.value !== ""
-        && confirmPWD.value !== "") {
-        formIsValid = false;
-        confirmPWD.setCustomValidity('As senhas não correspondem');
-    } else {
-        confirmPWD.setCustomValidity('');
-    }
-
-    return formIsValid;
-}*/
-
-// function validPassword(inputRef){
-//     if (inputPasswordRef.value === inputConfirmPasswordRef.value){
-// console.log(inputRef)
-//         inputRef.parentElement.classList.remove('error')
-//         btnIngressarRef.disabled = true
- 
-//     } else {
-
-//         inputRef.parentElement.classList.add('error')
-//         btnIngressarRef.disabled = false
-
-//     }
-// }
 
 var formErrors = {
     inputName: true,
