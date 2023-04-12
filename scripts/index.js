@@ -16,7 +16,6 @@ function checkFormValidity() {
   loginButtonRef.disabled = !formValidity;
 
 }
-console.log(formErrors)
 function validateInput(inputRef) {
 
     const inputValid = inputRef.checkValidity()
@@ -30,7 +29,6 @@ function validateInput(inputRef) {
         inputRef.parentElement.classList.add('error')
 
     }
-    console.log(inputRef.id)
 
     formErrors[inputRef.id] = !inputValid
 
@@ -59,7 +57,6 @@ function login(event) {
        body: JSON.stringify(userLoginData)
     }
 
-    console.log(userLoginData);
 
     fetch('https://todo-api.ctd.academy/v1/users/login', requestConfig).then(
         response => {

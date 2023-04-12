@@ -9,17 +9,31 @@ export function checkUserExists(token) {
             'Authorization': token
         }
     }
-    fetch('https://todo-api.ctd.academy/v1/users/getMe', config)
+    fetch(`${API}/users/getMe`, config)
         .then(response => {
             if (response.ok) {
                 response.json().then(data => {
                     sessionStorage.setItem('userName', `${data.firstName} ${data.lastName}`)
-                    // setUserName()
                 })
             }
         })
 }
-document.addEventListener('DOMContentLoaded', () => {
+
+export function watchToken(){
+    document.addEventListener('DOMContentLoaded', () => {
+        const token = sessionStorage.getItem('authToken');
+        JSON.stringify(token)
+    
+        if (!token) {
+            logout()
+    
+        } else if (token) {
+            checkUserExists(token)
+        }
+    })
+}
+watchToken()
+/*document.addEventListener('DOMContentLoaded', () => {
     const token = sessionStorage.getItem('authToken');
     JSON.stringify(token)
 
@@ -29,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (token) {
         checkUserExists(token)
     }
-})
+})*/
 
 export function setUserName(){
     const userNameRef = document.querySelector('#userName')
@@ -39,7 +53,7 @@ export function setUserName(){
 
 export function logout() {
 
-        window.location.href = '.index.html'
+        window.location.href = './index.html'
         sessionStorage.clear()
     }
 

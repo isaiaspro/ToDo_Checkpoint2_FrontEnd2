@@ -1,6 +1,8 @@
 import { API } from "./env.js";
 import { setUserName } from "./auth.js";
 import { logout } from "./auth.js";
+import { checkUserExists } from "./auth.js";
+import { watchToken } from "./auth.js";
 const authToken = sessionStorage.getItem("authToken");
 const createTaskbuttonRef = document.querySelector("#createTaskbutton");
 const novaTarefaRef = document.querySelector("#novaTarefa");
@@ -11,6 +13,11 @@ const tarefasTerminadasRef = document.querySelector("#tarefasTerminadas");
 let tarefasTerminadas = [];
 let tarefasPendentes = [];
 
+// function firstAccess(){
+
+
+// }
+
 
 const requestHeaders = {
   Accept: "application/json",
@@ -19,15 +26,16 @@ const requestHeaders = {
 };
 
 
+
 // Função que irá criar uma Task
 
 function createTask(e) {
   // debuggers
   e.preventDefault();
 
-  if (novaTarefaRef.value !== "") {
+  if (novaTarefaRef.value !== "" && novaTarefaRef.value.length > 3) {
     inputTaskAlertRef.classList.remove("input-task-alert");
-    createTaskbuttonRef.disable = false;
+    createTaskbuttonRef.disabled = false;
 
     // Informações sobre a Task
     const taskData = {
@@ -42,6 +50,7 @@ function createTask(e) {
       body: JSON.stringify(taskData),
     };
 
+
     // Realização da Request para criar uma nova Task
     fetch(`${API}/tasks`, requestConfig).then((response) => {
       if (response.ok) {
@@ -52,18 +61,17 @@ function createTask(e) {
 
           getTasks();
         });
+
       }
+      
     });
 
     novaTarefaRef.value = "";
-  } else {
+  }else {
     inputTaskAlertRef.classList.add("input-task-alert");
     createTaskbuttonRef.disable = true;
   }
 }
-
-console.log(novaTarefaRef.value);
-
 // Função que obtém as Tasks criadas pelo usuário logado
 function getTasks() {
   // Configurações da Request
@@ -83,6 +91,7 @@ function getTasks() {
     }
   });
 }
+
 
 function getUserData() {
   // Configuração da Request
@@ -152,11 +161,11 @@ function deleteTask(task) {
     }
   });
 
-  Swal.fire(
+ /* Swal.fire(
     'Sucesso!',
     'Sua tarefa foi excluida.',
     'success'
-  );
+  );*/
 }
 
 function concluirTarefa(task) {
@@ -184,18 +193,38 @@ function concluirTarefa(task) {
       });
     }
   });
+
+  Swal.fire({
+    position: 'top-end',
+    icon: 'success',
+    title: '🙌Parabéns! Uma tarefa a menos. Proxima...',
+    showConfirmButton: false,
+    timer: 2000
+  })
 }
 
 function addEventListenerPendentes() {
+
+
   const itens = Array.from(tarefasPendentesRef.children);
 
   itens.map((item, index) => {
     const buttonRef = item.children[0];
+    const audioRef = document.querySelector('audio')
 
-    console.log(buttonRef);
     buttonRef.addEventListener("click", () =>
-      concluirTarefa(tarefasPendentes[index])
+      audioRef.play()
     );
+    
+    buttonRef.addEventListener("click", () =>
+      concluirTarefa(tarefasPendentes[index]),
+    );
+
+
+ 
+    
+
+
   });
 }
 
@@ -222,8 +251,9 @@ function insertTasksInHTML() {
     const createdAtFormated = new Intl.DateTimeFormat('pt-BR').format(createdAtDate)
 
     tarefasPendentesRef.innerHTML += `
-        <li class="tarefa">
+        <li class="tarefa animate__animated animate__fadeInDown animate__faster">
           <div class="not-done"></div>
+          <audio src="./assets/task_done.mp3"></audio>
           <div class="descricao">
             <p class="nome">${task.description}</p>
             <p class="timestamp">Criada em: ${createdAtFormated}</p>
@@ -240,7 +270,7 @@ function insertTasksInHTML() {
     const createdAtFormated = new Intl.DateTimeFormat('pt-BR').format(createdAtDate)
 
     tarefasTerminadasRef.innerHTML += `
-      <li class="tarefa">
+      <li class="tarefa animate__animated animate__fadeInDown animate__faster">
         <div class="not-done"></div>
         <div class="descricao">
           <p class="nome">${task.description}</p>
@@ -266,6 +296,9 @@ function splitTasks(tasksArray) {
 }
 
 
+
 getUserData();
 
 createTaskbuttonRef.addEventListener("click", (e) => createTask(e));
+
+
