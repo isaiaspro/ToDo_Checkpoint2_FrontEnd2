@@ -203,11 +203,59 @@ function concluirTarefa(task) {
   })
 }
 
+
+function changeStatus(taskIndex) {
+
+  let tasksForInsert = {}
+  if (taskIndex.completed) {
+    tasksForInsert = { completed: false }
+  } else {
+    tasksForInsert = { completed: true }
+  }
+  // configurações do request
+  let requestConfig = {
+    method: 'PUT',
+    headers: requestHeaders,
+    body: JSON.stringify(tasksForInsert)
+  }
+  // Realização da Request para criar uma nova Task
+  fetch(`https://todo-api.ctd.academy/v1/tasks/${taskIndex.id}`, requestConfig).then(
+    response => {
+      if (response.ok) {
+        tarefasTerminadas = [];
+        tarefasPendentes = [];
+        getTasks()
+      }
+
+    }
+  )
+
+
+}
+
+function addEventListenersToButtonsDone(divReferencia, arrayTarefa) {
+  let arrayReferencia = divReferencia.children
+
+  const buttonDoneArray = Array.from(arrayReferencia)
+  buttonDoneArray.map(
+    (item, index) => {
+      const selecionaDivNotDone = item.children[0]
+      // console.log(selecionaDivNotDone)
+
+      const indexTarefaAtual = arrayTarefa[index]
+
+      selecionaDivNotDone.addEventListener('click', () => changeStatus(indexTarefaAtual))
+
+    }
+
+  )
+}
+
 function addEventListenerPendentes() {
 
 
   const itens = Array.from(tarefasPendentesRef.children);
-
+console.log(itens)
   itens.map((item, index) => {
     const buttonRef = item.children[0];
     const audioRef = document.querySelector('audio')
@@ -221,24 +269,37 @@ function addEventListenerPendentes() {
     );
 
 
- 
-    
-
-
   });
 }
 
-function addEventListenerTerminadas() {
-  const itens = Array.from(tarefasTerminadasRef.children);
-
+function addEventListenerPendentesDeletar() {
+  const itens = Array.from(tarefasPendentesRef.children);
+console.log(itens)
   itens.map((item, index) => {
-    const buttonRef = item.children[0];
+    const buttonRef = item.children[3].children[0];
+    console.log(buttonRef)
+
+    buttonRef.addEventListener("click", () =>
+    confirmDeleteTask(tarefasPendentes[index].id)
+    );
+  });
+}
+
+
+
+function addEventListenerTerminadasDeletar() {
+  const itens = Array.from(tarefasTerminadasRef.children);
+console.log(itens)
+  itens.map((item, index) => {
+    const buttonRef = item.children[2].children[0];
+    console.log(buttonRef)
 
     buttonRef.addEventListener("click", () =>
     confirmDeleteTask(tarefasTerminadas[index].id)
     );
   });
 }
+
 
 function insertTasksInHTML() {
   tarefasPendentesRef.innerHTML = "";
@@ -257,7 +318,10 @@ function insertTasksInHTML() {
           <div class="descricao">
             <p class="nome">${task.description}</p>
             <p class="timestamp">Criada em: ${createdAtFormated}</p>
-          </div>
+            </div>
+            <div>
+            <a class="excluir"><i class="fa-solid fa-trash-can"></i></a>
+            </div>
         </li>
         `;
   });
@@ -275,13 +339,18 @@ function insertTasksInHTML() {
         <div class="descricao">
           <p class="nome">${task.description}</p>
           <p class="timestamp">Criada em: ${createdAtFormated}</p>
-        </div>
+          </div>
+          <div id="trash" class="trash">
+          <a  class="excluir"><i class="fa-solid fa-trash-can"></i></a>
+          </div>
       </li>
     `;
   });
 
   addEventListenerPendentes();
-  addEventListenerTerminadas();
+  addEventListenerTerminadasDeletar()
+  addEventListenerPendentesDeletar()
+  addEventListenersToButtonsDone(tarefasTerminadasRef, tarefasTerminadas)
 }
 
 //Função para separar as tarefas entre pendentes e conluidas
@@ -300,5 +369,3 @@ function splitTasks(tasksArray) {
 getUserData();
 
 createTaskbuttonRef.addEventListener("click", (e) => createTask(e));
-
-

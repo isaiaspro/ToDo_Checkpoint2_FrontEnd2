@@ -7,6 +7,12 @@ header {
   margin-bottom: 2em;
 }
 
+a.excluir{
+  color: #8E64C5 ;
+  cursor: pointer;
+}
+
+
 a {
   display: block;
   width: fit-content;
@@ -14,6 +20,10 @@ a {
   border-bottom: .2em solid white;
   text-decoration: none;
   color: white
+}
+
+a:hover{
+  color:rgb(218, 88, 88)
 }
 
 .user-info {
@@ -237,6 +247,10 @@ small{
 .tarefas-terminadas .tarefa .descricao .nome {
   color: grey;
   text-decoration: line-through;
+}
+
+#trash:hover{
+  color: rgb(218, 88, 88)
 }
 
 #skeleton .descricao{
