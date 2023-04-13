@@ -65,7 +65,7 @@ function login(event) {
                   .then(
                       token => {
                           sessionStorage.setItem('authToken', token.jwt)
-                          window.location.href = '/tarefas.html'
+                          window.location.href = './tarefas.html'
                   })
             } else if(response.status !== 201){
                 // fazer uma função para mostrar o erro
